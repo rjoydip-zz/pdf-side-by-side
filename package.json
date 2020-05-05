@@ -1,8 +1,8 @@
 {
-  "name": "next-ts-preact-pwa",
+  "name": "pdf-diff-viewer",
   "version": "1.0.0",
   "license": "ISC",
-  "title": "Next Preact Typescript PWA",
+  "title": "PDF diff viewer",
   "scripts": {
     "lint": "tsc",
     "dev": "next",
@@ -19,14 +19,19 @@
     "preact-render-to-string": "^5.1.6",
     "react": "github:preact-compat/react#1.0.0",
     "react-dom": "github:preact-compat/react-dom#1.0.0",
+    "react-dropzone": "^11.0.1",
+    "react-extras": "^2.0.0",
     "react-icons": "^3.10.0",
+    "react-pdf": "^4.1.0",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
+    "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.0",
     "tailwindcss": "^1.4.1"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
     "@types/node": "^13.13.4",
+    "@types/react-pdf": "^4.0.3",
     "@types/styled-components": "5.0.1",
     "autoprefixer": "^9.7.6",
     "babel-plugin-styled-components": "^1.10.0",

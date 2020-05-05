@@ -1,6 +1,6 @@
-# next-ts-preact-pwa
+# pdf-diff-viewer
 
-This is a really simple `Next.js` project.
+PDF diff viewer.
 
 ## Features
 

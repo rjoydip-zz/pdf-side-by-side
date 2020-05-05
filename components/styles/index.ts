@@ -11,3 +11,5 @@ export const Paragraph = styled.p.attrs({
 export const Title = styled.div.attrs({
   className: 'text-3xl m-4',
 })``
+
+export const Grid = styled.div.attrs({})``
