@@ -8,9 +8,10 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "pre-deploy": "yarn clean-cache && yarn build-css && yarn lint && yarn build",
-    "clean-cache": "rm -rf .next && rm -rf node_modules/.cache",
+    "pre-deploy": "yarn clean && yarn build-css && yarn lint && yarn build",
+    "clean": "rm -rf .next && rm -rf node_modules/.cache",
     "build-css": "postcss tailwind.css -o index.css",
+    "build-css-prod": "cross-env NODE_ENV=production postcss tailwind.css -o index.css",
     "watch-css": "postcss tailwind.css -o index.css -w"
   },
   "dependencies": {

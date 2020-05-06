@@ -49,7 +49,7 @@ const Footer = ({ href, text }: { href: string; text: string }) => (
   </footer>
 )
 
-const Layout: NextPage<{}> = ({ children }) => {
+const Layout: NextPage<{}> = ({ children }: any) => {
   const [theme, themeToggler, mounted] = useDarkMode()
   // prevents ssr flash for mismatched dark mode
   if (!mounted) return <div style={{ visibility: 'hidden' }} />

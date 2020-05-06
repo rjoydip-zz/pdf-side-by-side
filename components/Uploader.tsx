@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropzone from 'react-dropzone'
 
-export const loop = (..._: any[]) => {}
+const loop = (..._: any[]) => {}
 
 const Uploader = ({ onUpload = loop, className = '' }) => {
   return (

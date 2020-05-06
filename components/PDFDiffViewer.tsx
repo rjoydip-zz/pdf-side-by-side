@@ -86,11 +86,7 @@ const PageNavigate = ({
       >
         <FiChevronLeft />
       </button>
-      <button>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p>
-      </button>
+      <button> Page {pageNumber} of {numPages}</button>
       <button
         onClick={() => {
           const pageNumber = page.pageNumber
