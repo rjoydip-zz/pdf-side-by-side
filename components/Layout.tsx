@@ -2,9 +2,10 @@ import React from 'react'
 import { NextPage } from 'next'
 import { ThemeProvider } from 'styled-components'
 import { FaMoon, FaRegMoon } from 'react-icons/fa'
-import { useDarkMode } from '../hooks'
-import { lightTheme, darkTheme } from '../components'
 import { createGlobalStyle, ThemeProps } from 'styled-components'
+
+import useDarkMode from '../hooks/useDarkMode'
+import { lightTheme, darkTheme } from '../components/Theme'
 
 interface props
   extends ThemeProps<{
@@ -65,4 +66,5 @@ const Layout: NextPage<{}> = ({ children }: any) => {
     </ThemeProvider>
   )
 }
-export { Layout }
+
+export default Layout

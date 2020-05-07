@@ -1,19 +1,21 @@
 import React from 'react'
 import Head from 'next/head'
-import { Provider } from 'react-redux'
-import withRedux from 'next-redux-wrapper'
+import { Provider } from 'unistore/react'
 
 import pkg from '../package.json'
 import styles from '../index.css'
-import initializeStore from '../lib/redux/store'
+import createStore from '../lib/redux/store'
 
 interface Props {
   store: any
-  Component: any,
+  Component: any
   pageProps: any
 }
+const store = createStore()
+if (process.env.NODE_ENV !== 'production')
+  store.subscribe((state) => console.log(state))
 
-function MyApp({ Component, pageProps, store }: Props) {
+function MyApp({ Component, pageProps }: Props) {
   return (
     <>
       <Head>
@@ -61,4 +63,4 @@ function MyApp({ Component, pageProps, store }: Props) {
   )
 }
 
-export default withRedux(initializeStore)(MyApp)
+export default MyApp

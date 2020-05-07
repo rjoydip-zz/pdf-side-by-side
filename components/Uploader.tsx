@@ -17,9 +17,11 @@ const Uploader = ({ onUpload = loop, className = '' }) => {
       {({ getRootProps, getInputProps }) => (
         <div className={className} {...getRootProps()}>
           <input {...getInputProps()} />
-          Drag and drop your files anywhere or
-          <br />
-          Upload a file
+          <p>
+            Drag and drop your files anywhere or
+            <br />
+            Upload a file
+          </p>
         </div>
       )}
     </Dropzone>

@@ -1,24 +1,13 @@
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunkMiddleware from 'redux-thunk'
-import reducers from './reducers'
+import createStore from 'unistore'
 
-// CREATING INITIAL STORE
-export default (initialState: any) => {
-  const store = createStore(
-    reducers,
-    initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
-  )
-
-  // IF REDUCERS WERE CHANGED, RELOAD WITH INITIAL STATE
-  if ((module as any).hot) {
-    (module as any).hot.accept('./reducers', () => {
-      const createNextReducer = require('./reducers').default
-
-      store.replaceReducer(createNextReducer(initialState))
-    })
-  }
-
-  return store
+const initialState = {
+  pageNumber: 0,
+  compare: {
+    numPages: 0
+  }, 
+  original: {
+    numPages: 0
+  }, 
 }
+
+export default () => createStore(initialState)

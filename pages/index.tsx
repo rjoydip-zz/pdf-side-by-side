@@ -1,7 +1,9 @@
+import dynamic from 'next/dynamic'
 import React, { useEffect } from 'react'
-import { Layout } from '../components'
 import { Title } from '../components/styles'
-import { Viewer } from '../components/Viewer'
+
+const Viewer = dynamic(() => import('../components/Viewer'))
+const Layout = dynamic(() => import('../components/Layout'))
 
 export default () => {
   useEffect(() => {
@@ -18,7 +20,7 @@ export default () => {
 
   return (
     <Layout>
-      <Title>Welcome to PDF diff viewer</Title>
+      <Title>PDF Side By Side</Title>
       <Viewer />
     </Layout>
   )
