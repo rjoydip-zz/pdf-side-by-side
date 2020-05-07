@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropzone from 'react-dropzone'
 
-const loop = (..._: any[]) => {}
+import { loop } from '../utils'
 
 const Uploader = ({ onUpload = loop, className = '' }) => {
   return (
@@ -17,9 +17,11 @@ const Uploader = ({ onUpload = loop, className = '' }) => {
       {({ getRootProps, getInputProps }) => (
         <div className={className} {...getRootProps()}>
           <input {...getInputProps()} />
-          Drag and drop your files anywhere or
-          <br />
-          Upload a file
+          <p>
+            Drag and drop your files anywhere or
+            <br />
+            Upload a file
+          </p>
         </div>
       )}
     </Dropzone>

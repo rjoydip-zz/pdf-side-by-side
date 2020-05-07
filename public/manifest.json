@@ -1,7 +1,7 @@
 {
-    "name": "Next Typescript PWA",
-    "short_name": "Next Typescript PWA",
-    "description": "Next Typescript PWA",
+    "name": "PDF Side By Side",
+    "short_name": "PDF Side By Side",
+    "description": "PDF Side By Side",
     "icons": [
         {
             "src": "\/static\/android-icon.png",
