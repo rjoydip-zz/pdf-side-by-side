@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { NextPage } from 'next'
 import { Document, Page, pdfjs } from 'react-pdf'
+import { useSelector } from 'react-redux'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 import { If } from './extras'
 import { Uploader } from './Uploader'
+import { initilizePageNumber } from '../lib/redux/actions'
+import { useDispatchWrapper } from '../hooks'
+import { loop } from '../utils'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -13,8 +17,6 @@ interface PDFViewerProps {
   className: string
   pageInfo?: Function
 }
-
-const loop = (..._: any[]) => {}
 
 const PDFViewer = ({
   file,
@@ -44,7 +46,7 @@ const PDFViewer = ({
   )
 }
 
-const PDFUploadViewer = ({ id = '', pageInfo = loop }) => {
+const PDFUploadViewer = ({ id = '', onPageInfo = loop }) => {
   const [file, setFile] = useState<any>(null)
   return (
     <>
@@ -58,68 +60,48 @@ const PDFUploadViewer = ({ id = '', pageInfo = loop }) => {
         <PDFViewer
           className="p-2 border-solid border-1 border-gray-300 outline-none shadow-lg max-h-xs max-w-xs"
           file={file}
-          pageInfo={(info: any[]) => pageInfo({ info, id })}
+          pageInfo={(info: any) => onPageInfo({ numPages: info.numPages, id })}
         />
       </If>
     </>
   )
 }
 
-const PageNavigate = ({
-  pageNumber,
-  numPages,
-}: {
-  pageNumber: number
-  numPages: number
-}) => {
-  const [page, setPage] = useState<any>({
-    numPages,
-    pageNumber,
-  })
+const PageNavigate = ({}) => {
+  const { numPages, pageNumber } = useSelector((state: any) => state.pagination)
   return (
-    <div className="grid gap-4">
-      <button
-        onClick={() => {
-          const pageNumber = page.pageNumber
-          if (pageNumber > 1) setPage({ ...page, pageNumber: pageNumber - 1 })
-        }}
-      >
+    <>
+      <button onClick={() => {}}>
         <FiChevronLeft />
       </button>
-      <button> Page {pageNumber} of {numPages}</button>
-      <button
-        onClick={() => {
-          const pageNumber = page.pageNumber
-          if (pageNumber < page.numPages)
-            setPage({ ...page, pageNumber: pageNumber + 1 })
-        }}
-      >
+      <button>
+        Page {pageNumber} of {numPages}
+      </button>
+      <button onClick={() => {}}>
         <FiChevronRight />
       </button>
-    </div>
+    </>
   )
 }
 
-const PDFDiffViewer: NextPage<{}> = ({}) => {
-  const [payload] = useState({
-    originalNumPages: 0,
-    compareNumPages: 0,
-    pageNumber: 1,
-  })
+const Viewer: NextPage<{}> = ({}) => {
+  const state = useSelector((state: any) => state)
+  console.log(state)
   return (
-    <div className="flex flex-row justify-center">
-      <PDFUploadViewer id="original" pageInfo={({}) => {}} />
-      <PDFUploadViewer id="compare" pageInfo={({}) => {}} />
-      <If condition={payload.originalNumPages && payload.compareNumPages}>
-        <PageNavigate
-          pageNumber={payload.pageNumber}
-          numPages={Math.max(
-            payload.originalNumPages && payload.compareNumPages
-          )}
+    <div className="flex flex-col">
+      <div className="flex flex-row justify-center">
+        <PDFUploadViewer
+          id="original"
+          onPageInfo={({ numPages }) =>
+            useDispatchWrapper(initilizePageNumber(numPages))
+          }
         />
-      </If>
+      </div>
+      <div className="flex flex-row justify-center">
+        <PageNavigate />
+      </div>
     </div>
   )
 }
 
-export { PDFDiffViewer }
+export { Viewer }

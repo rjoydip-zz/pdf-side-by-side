@@ -1,10 +1,19 @@
-import { AppProps } from 'next/app'
-import Head from 'next/head'
 import React from 'react'
+import Head from 'next/head'
+import { Provider } from 'react-redux'
+import withRedux from 'next-redux-wrapper'
+
 import pkg from '../package.json'
 import styles from '../index.css'
+import initializeStore from '../lib/redux/store'
 
-function MyApp({ Component, pageProps }: AppProps) {
+interface Props {
+  store: any
+  Component: any,
+  pageProps: any
+}
+
+function MyApp({ Component, pageProps, store }: Props) {
   return (
     <>
       <Head>
@@ -41,11 +50,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <noscript key="noscript">Your browser does not support JavaScript!</noscript>
+        <noscript key="noscript">
+          Your browser does not support JavaScript!
+        </noscript>
       </Head>
-      <Component {...styles} {...pageProps} />
+      <Provider store={store}>
+        <Component {...styles} {...pageProps} />
+      </Provider>
     </>
   )
 }
 
-export default MyApp
+export default withRedux(initializeStore)(MyApp)
