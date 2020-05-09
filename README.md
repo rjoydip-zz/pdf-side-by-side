@@ -1,5 +1,7 @@
 # pdf-side-by-side
 
+![PDF Side By Side build](https://github.com/rjoydip/pdf-side-by-side/workflows/PDF%20Side%20By%20Side%20build/badge.svg)
+
 PDF Side By Side
 
 ## Features
